@@ -1,63 +1,46 @@
-## Homework | Week 3
-`Not: Ödevi yeni bir repoya ekleyeceksiniz. Var olan reponuzda bir güncelleme olmayacak. "homework-2..." şeklinde yeni bir repo üzerinde çalışacaksınız.`
+# Book Store
 
+This repository contains Book Store application written by Go.
+Book store has a lot of book. 
+You can use below commands.
 
-Elimizde bir kitap listesi var. 
-Kitap alanları şöyle;
+## Clone the project
 ```
-- Kitap ID
-- Kitap Adı
-- Sayfa Sayısı
-- Stok Sayısı
-- Fiyatı
-- Stock Kodu
-- ISBN
-- Yazar bilgisi (ID ve İsim)
+$ git clone https://github.com/Picus-Security-Golang-Bootcamp/homework-1-week-2-eibrahimarisoy.git
+$ cd homework-1-week-2-eibrahimarisoy
 ```
 
-1. Tüm kitapları listele (list)
-2. Verilen girdi hangi kitap isimlerinde geçiyorsa o kitapları listele (search)
-3. ID'ye göre kitabı yazdır
-4. IDsi verilen kitabı sil. (Silinen kitabın ID'ye göre geliyor olması gerekiyor.)
-5. IDsi verilen kitabı istenilen adet kadar satın al ve kitabın son bilgilerini ekrana yazdır.
-
-Yanlış komut girildiğinde ekrana usage'ı yazdıracak. 
-
-
-Concurrency ile ilgili medium yazısı yazılacak. 
-
+## Commands
 ### list command
 ```
 go run main.go list
 ```
+This command displays all books in the list.
 
 ### search command 
 ```
 go run main.go search <bookName>
-go run main.go search Lord of the Ring: The Return of the King
+go run main.go search Lord of the Ring: The Return of 
 ```
+This command searches for a book in the list. If the book is found, it displays the book. If the book is not found, it displays the message "We don't have that book".
 
 ### get command
 ```
 go run main.go get <bookID>
 go run main.go get 5
 ```
+This command gets a book from the list by given ID. If the book is found, it displays the book. If the book is not found, it displays the message "We don't have that book".
 
 ### delete command
 ```
 go run main.go delete <bookID>
 go run main.go delete 5
 ```
+This command deletes a book from the list by given ID. If the book is found, it displays the message "Book deleted successfully". If the book is not found, it displays the message "We don't have that book".
 
 ### buy command
 ```
 go run main.go buy <bookID> <quantity>
 go run main.go buy 5 2
 ```
-
-###
-# Requirements:
-- README
-- No third party package(s)
-- Everything should be in English (Comments, Function names, File names, etc.)
-- Use structs not maps
+This command buys a book from the list by given ID and quantity. If the book is not found, it displays the message "We don't have that book". If the quantity is not enough, it displays the message "We don't have that quantity". If the book is found and the quantity is enough, it displays the message "Thank you for your purchase". And the book quantity is decreased by the given quantity lastly print the book information.
