@@ -2,7 +2,6 @@ package book
 
 import (
 	"fmt"
-	"strings"
 )
 
 type Author struct {
@@ -10,77 +9,48 @@ type Author struct {
 	name string
 }
 
+type Book struct {
+	ID         int
+	Name       string
+	Pages      int
+	StockCount int
+	Price      float64
+	StockCode  string
+	ISBN       string
+	IsDeleted  bool
+	Author
+}
+
+// NewAuthor creates a new Author instance
 func NewAuthor(id, name string) Author {
 	return Author{id, name}
 }
 
-type Book struct {
-	id         int
-	name       string
-	pages      string
-	stockCount int
-	price      float64
-	stockCode  string
-	ISBN       string
-	Author
-}
-
 // NewBook returns a new Book instance
-func NewBook(name, pages, stock_code, ISBN string, id, stock_count int, price float64, author Author) Book {
-	return Book{id, name, pages, stock_count, price, stock_code, ISBN, author}
+func NewBook(name, stockCode, ISBN string, id, stockCount, pages int, price float64, isDeleted bool, author Author) *Book {
+	return &Book{id, name, pages, stockCount, price, stockCode, ISBN, isDeleted, author}
 }
 
-// bookInfo prints the book information
+// BookInfo prints the book information
 func (b *Book) BookInfo() {
-	fmt.Printf("ID : %v \n", b.id)
-	fmt.Printf("Name : %s \n", b.name)
-	fmt.Printf("Pages : %s \n", b.pages)
-	fmt.Printf("Stock Count : %d \n", b.stockCount)
-	fmt.Printf("Price : %.2f \n", b.price)
-	fmt.Printf("Stock Code : %s \n", b.stockCode)
+	fmt.Printf("ID : %v \n", b.ID)
+	fmt.Printf("Name : %s \n", b.Name)
+	fmt.Printf("Pages : %v \n", b.Pages)
+	fmt.Printf("Stock Count : %d \n", b.StockCount)
+	fmt.Printf("Price : %.2f \n", b.Price)
+	fmt.Printf("Stock Code : %s \n", b.StockCode)
 	fmt.Printf("ISBN : %s \n", b.ISBN)
 	fmt.Printf("Author ID : %s \n", b.Author.id)
 	fmt.Printf("Author Name : %s \n", b.Author.name)
+	fmt.Printf("Is Deleted : %t \n", b.IsDeleted)
 }
 
-// list prints all the books
-func List(books []Book) {
-	for _, v := range books {
-		v.BookInfo()
-		fmt.Println("-", strings.Repeat("-", 50))
-	}
+// setBookStock sets the stock count
+func (b *Book) SetBookStock(stock int) {
+	b.StockCount = stock
 }
 
-// Search checks if a book is in the books slice, and returns the book
-func Search(bookName string, books *[]Book) (result []Book) {
-	for _, v := range *books {
-		if strings.Contains(strings.ToLower(v.name), bookName) {
-			result = append(result, v)
-		}
-	}
-	return result
-}
-
-// Get returns the index of book given by the id
-func Get(id int, books *[]Book) (int, error) {
-	for i, v := range *books {
-		if v.id == id {
-			return i, nil
-		}
-	}
-	return 0, fmt.Errorf("Book not found")
-}
-
-// Delete deletes the book from the books slice
-func Delete(books *[]Book, index int) {
-	*books = append((*books)[:index], (*books)[index+1:]...)
-}
-
-// Buy decrements the stock count if the book is available
-func Buy(book *Book, quantity int) error {
-	if book.stockCount < quantity {
-		return fmt.Errorf("Not enough stock")
-	}
-	book.stockCount -= quantity
-	return nil
+// setIsDeleted sets the stock count
+func (b *Book) SetIsDeleted(stat bool) {
+	b.IsDeleted = stat
 }
