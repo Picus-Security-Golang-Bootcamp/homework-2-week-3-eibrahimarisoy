@@ -3,7 +3,7 @@
   "id": 1,
   "name": "Book 1",
   "pages": 100,
-  "stockCount": 0,
+  "stockCount": 1,
   "price": 100,
   "stockCode": "1",
   "ISBN": "1",
@@ -45,7 +45,7 @@
   "id": 4,
   "name": "Book 4",
   "pages": 400,
-  "stockCount": 0,
+  "stockCount": 4,
   "price": 400,
   "stockCode": "4",
   "ISBN": "4",
@@ -63,7 +63,7 @@
   "price": 500,
   "stockCode": "5",
   "ISBN": "5",
-  "isDeleted": true,
+  "isDeleted": false,
   "author": {
    "id": 5,
    "name": "Author 5"
