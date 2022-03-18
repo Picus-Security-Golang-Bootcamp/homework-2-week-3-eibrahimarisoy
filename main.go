@@ -25,17 +25,22 @@ Parameters:
 `
 
 func main() {
-	// define usage
 	flag.Usage = func() {
 		fmt.Fprint(os.Stderr, fmt.Sprintf(usage))
 	}
-	// load books
 
 	args := os.Args[1:]
 
-	if err := bookStore.Run(bookStore.NewBookStore(), args); err != nil {
+	bs, err := bookStore.NewBookStore()
+	if err != nil {
 		usageAndExit(err.Error())
 	}
+
+	if err := bs.Run(args); err != nil {
+		usageAndExit(err.Error())
+	}
+	// write the book to the file
+	bs.Close()
 }
 
 func usageAndExit(msg string) {
@@ -43,5 +48,6 @@ func usageAndExit(msg string) {
 	fmt.Fprintf(os.Stderr, "\n\n")
 	flag.Usage()
 	fmt.Fprintf(os.Stderr, "\n")
+
 	os.Exit(1)
 }

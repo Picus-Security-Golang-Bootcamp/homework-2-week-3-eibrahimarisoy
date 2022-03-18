@@ -5,24 +5,24 @@ import (
 )
 
 type Author struct {
-	id   string
-	name string
+	ID   int    `json:"id"`
+	Name string `json:"name"`
 }
 
 type Book struct {
-	ID         int
-	Name       string
-	Pages      int
-	StockCount int
-	Price      float64
-	StockCode  string
+	ID         int     `json:"id"`
+	Name       string  `json:"name"`
+	Pages      int     `json:"pages"`
+	StockCount int     `json:"stockCount"`
+	Price      float64 `json:"price"`
+	StockCode  string  `json:"stockCode"`
 	ISBN       string
-	IsDeleted  bool
-	Author
+	IsDeleted  bool `json:"isDeleted"`
+	Author     `json:"author"`
 }
 
 // NewAuthor creates a new Author instance
-func NewAuthor(id, name string) Author {
+func NewAuthor(id int, name string) Author {
 	return Author{id, name}
 }
 
@@ -40,9 +40,9 @@ func (b *Book) BookInfo() {
 	fmt.Printf("Price : %.2f \n", b.Price)
 	fmt.Printf("Stock Code : %s \n", b.StockCode)
 	fmt.Printf("ISBN : %s \n", b.ISBN)
-	fmt.Printf("Author ID : %s \n", b.Author.id)
-	fmt.Printf("Author Name : %s \n", b.Author.name)
 	fmt.Printf("Is Deleted : %t \n", b.IsDeleted)
+	fmt.Printf("Author ID : %v \n", b.Author.ID)
+	fmt.Printf("Author Name : %s \n", b.Author.Name)
 }
 
 // setBookStock sets the stock count

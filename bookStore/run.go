@@ -7,7 +7,7 @@ import (
 )
 
 // Run runs the bookStore given the command and the arguments
-func Run(bs BookStore, args []string) error {
+func (bs BookStore) Run(args []string) error {
 	if len(args) < 1 {
 		return fmt.Errorf("No command provided")
 	}
@@ -15,7 +15,6 @@ func Run(bs BookStore, args []string) error {
 	switch args[0] {
 
 	case "list":
-		// list all the books
 		bs.List()
 
 	case "search":
@@ -50,7 +49,7 @@ func Run(bs BookStore, args []string) error {
 		if err != nil {
 			return err
 		}
-		bs.books[index].BookInfo()
+		bs.Books[index].BookInfo()
 
 	case "delete":
 		// if the user has not provided <bookID>
@@ -67,20 +66,17 @@ func Run(bs BookStore, args []string) error {
 		if err != nil {
 			return err
 		}
+
 		fmt.Println(strings.Repeat("-", 50))
 		fmt.Println("Deleting book:")
-
-		bs.books[index].BookInfo()
+		bs.Books[index].BookInfo()
 		fmt.Println(strings.Repeat("-", 50))
 
 		bs.Delete(index)
-
-		fmt.Println("Remaining books:")
-		fmt.Println()
 		bs.List()
 
 	case "buy":
-		// if the user has not provided <bookID> and <quantity>
+		// if the user has not provided <bookID> or <quantity>
 		if len(args) < 3 {
 			return fmt.Errorf("No book id or quantity provided")
 		}
@@ -101,15 +97,15 @@ func Run(bs BookStore, args []string) error {
 			return err
 		}
 
-		instance := bs.books[index]
+		instance := bs.Books[index]
 		if err := bs.Buy(instance, quantity); err != nil {
 			return err
 		}
 
 		instance.BookInfo()
 
-		// default:
-		// 	return fmt.Errorf("Invalid command")
+	default:
+		return fmt.Errorf("Invalid command")
 	}
 	return nil
 }
