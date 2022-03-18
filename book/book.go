@@ -27,8 +27,21 @@ func NewAuthor(id int, name string) Author {
 }
 
 // NewBook returns a new Book instance
-func NewBook(name, stockCode, ISBN string, id, stockCount, pages int, price float64, isDeleted bool, author Author) *Book {
-	return &Book{id, name, pages, stockCount, price, stockCode, ISBN, isDeleted, author}
+func NewBook(v map[string]interface{}) *Book {
+	return &Book{
+		ID:         int(v["id"].(float64)),
+		Name:       v["name"].(string),
+		Pages:      int(v["pages"].(float64)),
+		StockCount: int(v["stockCount"].(float64)),
+		Price:      v["price"].(float64),
+		StockCode:  v["stockCode"].(string),
+		ISBN:       v["ISBN"].(string),
+		IsDeleted:  v["isDeleted"].(bool),
+		Author: NewAuthor(
+			int(v["author"].(map[string]interface{})["id"].(float64)),
+			v["author"].(map[string]interface{})["name"].(string),
+		),
+	}
 }
 
 // BookInfo prints the book information

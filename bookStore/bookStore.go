@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"os"
 	"strings"
 
 	"github.com/Picus-Security-Golang-Bootcamp/homework-2-week-3-eibrahimarisoy/book"
@@ -14,44 +13,52 @@ type BookStore struct {
 	Books []*book.Book
 }
 
-// NewBookStore loads the initial books
-// func NewBookStore() BookStore {
-// 	return BookStore{
-// 		Books: []*book.Book{
-// 			book.NewBook("Book 1", "1", "1", 1, 1, 100, 1.0, false, book.NewAuthor("1", "Author 1")),
-// 			book.NewBook("Book 2", "2", "2", 2, 2, 200, 2.0, false, book.NewAuthor("2", "Author 2")),
-// 			book.NewBook("Book 3", "3", "3", 3, 3, 300, 3.0, false, book.NewAuthor("3", "Author 3")),
-// 			book.NewBook("Book 4", "4", "4", 4, 4, 400, 4.0, false, book.NewAuthor("4", "Author 4")),
-// 			book.NewBook("Book 5", "5", "5", 5, 5, 500, 5.0, false, book.NewAuthor("5", "Author 5")),
-// 			book.NewBook("Book 6", "6", "6", 6, 6, 600, 6.0, true, book.NewAuthor("6", "Author 6")),
-// 		},
-// 	}
-// }
-
-// Open loads the bookStore from the file
+// NewBookStore loads the bookStore from the file using the map[string] and
+// also use constructor func for book and author
 func NewBookStore() (*BookStore, error) {
 	bs := BookStore{}
-	jsonFile, err := os.Open("books.json")
 
+	data := []map[string]interface{}{}
+	contents, err := ioutil.ReadFile("books.json")
 	if err != nil {
 		return nil, err
 	}
 
-	data, err := ioutil.ReadAll(jsonFile)
-	if err != nil {
+	if err := json.Unmarshal(contents, &data); err != nil {
 		return nil, err
 	}
 
-	if err := json.Unmarshal(data, &bs); err != nil {
-		return nil, err
+	for _, v := range data {
+		bs.Books = append(bs.Books, book.NewBook(v))
 	}
 
 	return &bs, nil
 }
 
+// NewBookStore loads the bookStore from the file using struct
+// func NewBookStore() (*BookStore, error) {
+// 	bs := BookStore{}
+// 	jsonFile, err := os.Open("books.json")
+
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	data, err := ioutil.ReadAll(jsonFile)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	if err := json.Unmarshal(data, &bs); err != nil {
+// 		return nil, err
+// 	}
+
+// 	return &bs, nil
+// }
+
 // Close saves the bookStore to the file
-func (b BookStore) Close() {
-	file, _ := json.MarshalIndent(b, "", " ")
+func (b BookStore) WriteFile() {
+	file, _ := json.MarshalIndent(b.Books, "", " ")
 	_ = ioutil.WriteFile("books.json", file, 0644)
 
 }

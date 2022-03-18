@@ -1,88 +1,86 @@
-{
- "Books": [
-  {
+[
+ {
+  "id": 1,
+  "name": "Book 1",
+  "pages": 100,
+  "stockCount": 0,
+  "price": 100,
+  "stockCode": "1",
+  "ISBN": "1",
+  "isDeleted": false,
+  "author": {
    "id": 1,
-   "name": "Book 1",
-   "pages": 100,
-   "stockCount": 1,
-   "price": 100,
-   "stockCode": "1",
-   "ISBN": "1",
-   "isDeleted": false,
-   "author": {
-    "id": 1,
-    "name": "Author 1"
-   }
-  },
-  {
-   "id": 2,
-   "name": "Book 2",
-   "pages": 200,
-   "stockCount": 2,
-   "price": 200,
-   "stockCode": "2",
-   "ISBN": "2",
-   "isDeleted": false,
-   "author": {
-    "id": 2,
-    "name": "Author 2"
-   }
-  },
-  {
-   "id": 3,
-   "name": "Book 3",
-   "pages": 300,
-   "stockCount": 3,
-   "price": 300,
-   "stockCode": "3",
-   "ISBN": "3",
-   "isDeleted": false,
-   "author": {
-    "id": 3,
-    "name": "Author 3"
-   }
-  },
-  {
-   "id": 4,
-   "name": "Book 4",
-   "pages": 400,
-   "stockCount": 0,
-   "price": 400,
-   "stockCode": "4",
-   "ISBN": "4",
-   "isDeleted": false,
-   "author": {
-    "id": 4,
-    "name": "Author 4"
-   }
-  },
-  {
-   "id": 5,
-   "name": "Book 5",
-   "pages": 500,
-   "stockCount": 5,
-   "price": 500,
-   "stockCode": "5",
-   "ISBN": "5",
-   "isDeleted": true,
-   "author": {
-    "id": 5,
-    "name": "Author 5"
-   }
-  },
-  {
-   "id": 6,
-   "name": "Book 6",
-   "pages": 600,
-   "stockCount": 6,
-   "price": 600,
-   "stockCode": "6",
-   "ISBN": "6",
-   "isDeleted": false,
-   "author": {
-    "id": 6,
-    "name": "Author 6"
-   }
+   "name": "Author 1"
   }
- ]
-}
+ },
+ {
+  "id": 2,
+  "name": "Book 2",
+  "pages": 200,
+  "stockCount": 2,
+  "price": 200,
+  "stockCode": "2",
+  "ISBN": "2",
+  "isDeleted": false,
+  "author": {
+   "id": 2,
+   "name": "Author 2"
+  }
+ },
+ {
+  "id": 3,
+  "name": "Book 3",
+  "pages": 300,
+  "stockCount": 3,
+  "price": 300,
+  "stockCode": "3",
+  "ISBN": "3",
+  "isDeleted": false,
+  "author": {
+   "id": 3,
+   "name": "Author 3"
+  }
+ },
+ {
+  "id": 4,
+  "name": "Book 4",
+  "pages": 400,
+  "stockCount": 0,
+  "price": 400,
+  "stockCode": "4",
+  "ISBN": "4",
+  "isDeleted": false,
+  "author": {
+   "id": 4,
+   "name": "Author 4"
+  }
+ },
+ {
+  "id": 5,
+  "name": "Book 5",
+  "pages": 500,
+  "stockCount": 5,
+  "price": 500,
+  "stockCode": "5",
+  "ISBN": "5",
+  "isDeleted": true,
+  "author": {
+   "id": 5,
+   "name": "Author 5"
+  }
+ },
+ {
+  "id": 6,
+  "name": "Book 6",
+  "pages": 600,
+  "stockCount": 6,
+  "price": 600,
+  "stockCode": "6",
+  "ISBN": "6",
+  "isDeleted": false,
+  "author": {
+   "id": 6,
+   "name": "Author 6"
+  }
+ }
+]

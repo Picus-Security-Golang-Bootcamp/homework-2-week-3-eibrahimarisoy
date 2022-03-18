@@ -32,6 +32,7 @@ func main() {
 	args := os.Args[1:]
 
 	bs, err := bookStore.NewBookStore()
+
 	if err != nil {
 		usageAndExit(err.Error())
 	}
@@ -39,8 +40,8 @@ func main() {
 	if err := bs.Run(args); err != nil {
 		usageAndExit(err.Error())
 	}
-	// write the book to the file
-	bs.Close()
+
+	bs.WriteFile()
 }
 
 func usageAndExit(msg string) {
