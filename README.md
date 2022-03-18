@@ -1,3 +1,5 @@
+# my concurrency article url
+https://medium.com/@eibrahimarisoy/go-ve-concurrency-fd42e4627514
 # Book Store
 
 This repository contains Book Store application written by Go.
